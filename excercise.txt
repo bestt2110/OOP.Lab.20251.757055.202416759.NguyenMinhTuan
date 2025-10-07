@@ -1,0 +1,10 @@
+- What happens if users choose "Cancel"?
+In the program, we use JOptionPane.showConfirmDialog() return one of these three:
++ JOptionPane.YES_OPTION if we choose Yes
++ JOptionPane.NO_OPTION if we choose No
++ JOptionPane.CANCEL_OPTION if we Cancel
+But we only check for JOptionPane.YES_OPTION and other choices beside Yes return No, so when we choose "Cancel" the program will print out "You've chosen:No"
+
+- How to customize the options to users with only two options:
+Instead of using JOptionPane.showConfirmDialog, we use JOptionPane.showOptionDialog with JOptionPane.YES_NO_OPTION (if we want to choose whether yes/no) or JOptionPane.DEFAULT_OPTION and an array of choices to apply in the brackets of JOptionPane.showOptionDialog (if we want alternative options for yes/no). I uploaded the 
+file called Choosing2Options.java to express my idea for the YES_NO_OPTION way.
