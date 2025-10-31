@@ -84,4 +84,24 @@ public class Cart {
 		}
 		System.out.println("***********************************************");
 	}
+	public void seachbyID(int id) {
+		for (int i=0; i < qtyOrdered; i++) {
+			if (itemsOrdered[i].isMatch(id)) {
+				System.out.println("Matches found");	
+				System.out.println(itemsOrdered[i]);
+			}
+			else {
+				System.out.println("No match is found");			}
+		}
+	}
+	public void seachbytitle(int title) {
+		for (int i=0; i < qtyOrdered; i++) {
+			if (itemsOrdered[i].isMatch(title)) {
+				System.out.println("Matches found");	
+				System.out.println(itemsOrdered[i]);
+			}
+			else {
+				System.out.println("No match is found");			}
+		}
+	}
 }

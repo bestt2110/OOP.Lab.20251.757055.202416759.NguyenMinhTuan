@@ -80,4 +80,10 @@ public class DigitalVideoDisc {
 	    }
 	    return result;
 	}
+	public boolean isMatch(String title) {
+		return this.title.equalsIgnoreCase(title);
+	}
+	public boolean isMatch(int id) {
+		return id==this.id;
+	}
 }
