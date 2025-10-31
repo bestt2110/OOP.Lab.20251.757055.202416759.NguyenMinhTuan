@@ -59,4 +59,25 @@ public class DigitalVideoDisc {
 	}
 	private static int nbDigitalVideoDiscs=0;
 	private int id;
+	@Override
+	public String toString() {
+	    String result = "DVD";
+
+	    if (title != null) {
+	        result += " - [Title: " + title + "]";
+	    }
+	    if (category != null) {
+	        result += " - [Category: " + category + "]";
+	    }
+	    if (director != null) {
+	        result += " - [Director: " + director + "]";
+	    }
+	    if (length > 0) {
+	        result += " - [Length: " + length + "]";
+	    }
+	    if (cost > 0) {
+	        result += " - [Price: " + cost + "$]";
+	    }
+	    return result;
 	}
+}

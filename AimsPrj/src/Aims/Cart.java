@@ -77,4 +77,11 @@ public class Cart {
 	        System.out.println("The cart is almost full!");
 	    }
 	}
+	public void print() {
+		System.out.println("***********************CART***********************");
+		for (int i=0; i < qtyOrdered; i++) {
+			System.out.println((i+1)+". "+ itemsOrdered[i]);
+		}
+		System.out.println("***********************************************");
+	}
 }
