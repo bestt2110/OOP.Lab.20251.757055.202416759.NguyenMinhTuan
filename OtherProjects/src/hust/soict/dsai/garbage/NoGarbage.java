@@ -19,3 +19,4 @@ public class NoGarbage {
         System.out.println(endTime - startTime);
     }
 }
+
