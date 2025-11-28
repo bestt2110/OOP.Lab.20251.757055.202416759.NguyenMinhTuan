@@ -129,7 +129,6 @@ public class Aims {
                     scanner.nextLine();
                     if (cartChoice == 1) {
                         System.out.print("Filter by (id/title): ");
-                        String filter = scanner.nextLine();
                         int filterChoice = scanner.nextInt();
                         scanner.nextLine();
                         if (filterChoice == 1) {
@@ -143,7 +142,6 @@ public class Aims {
                         }
                     } else if (cartChoice == 2) {
                         System.out.print("Sort by (title/cost): ");
-                        String sort = scanner.nextLine();
                         int sortChoice = scanner.nextInt();
                         scanner.nextLine();
                         if (sortChoice == 1) {
