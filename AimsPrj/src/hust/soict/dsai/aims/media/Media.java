@@ -8,7 +8,7 @@ public abstract class Media {
 	private String category;
 	private float cost;
 	
-	private static int nbDigitalVideoDiscs=0;
+	private static int nbMedia=0;
 	public static final Comparator<Media> COMPARE_BY_TITLE_COST = 
 			new MediaComparatorByTitleCost();
 	public static final Comparator<Media> COMPARE_BY_COST_TITLE = 
@@ -33,8 +33,8 @@ public abstract class Media {
 	public Media(String title) {
 		super();
 		this.title = title;
-		nbDigitalVideoDiscs++;
-		this.id = nbDigitalVideoDiscs;
+		nbMedia++;
+		this.id = nbMedia;
 	}
 	
 	public Media(String title, String category, float cost) {
@@ -42,8 +42,8 @@ public abstract class Media {
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
-		nbDigitalVideoDiscs++;
-		this.id = nbDigitalVideoDiscs;
+		nbMedia++;
+		this.id = nbMedia;
 	}
 	
 	public boolean isMatch(String title) {
@@ -57,8 +57,8 @@ public abstract class Media {
 	}
 	@Override
 	public boolean equals(Object obj) {
-	    if (this == obj) return true;                // cùng object
-	    if (!(obj instanceof Media)) return false;    // khác kiểu → false
+	    if (this == obj) return true;               
+	    if (!(obj instanceof Media)) return false;    
 
 	    Media other = (Media) obj;
 	    return this.getTitle().equals(other.getTitle());

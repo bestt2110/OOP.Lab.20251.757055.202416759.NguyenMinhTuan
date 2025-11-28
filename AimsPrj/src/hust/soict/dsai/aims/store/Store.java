@@ -47,12 +47,6 @@ public class Store {
         System.out.println("*********************************************");
     }
     
-    public void sortByCost() {
-        Collections.sort(itemsInStore, Media.COMPARE_BY_COST_TITLE);
-    }
-    public void sortByTitle() {
-        Collections.sort(itemsInStore, Media.COMPARE_BY_TITLE_COST);
-    }
     public void printAllTitles() {
         for (Media m : itemsInStore) {
             System.out.println(m.getTitle());

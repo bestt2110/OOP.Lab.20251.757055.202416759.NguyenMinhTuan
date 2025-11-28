@@ -1,0 +1,33 @@
+9. Constructors of whole classes and parent classes:
+- Which classes are aggregates of other classes? 
+Class CompactDisc has an ArrayList<Track> → aggregate of Track.
+Class Cart has an ArrayList<Media> → aggregate of Media.
+Class Store has an ArrayList<Media> → aggregate of Media.
+
+10. Unique item in a list
+In my code, I check identity with instanceof. If obj is not a Media (or Track), the method returns false. This will avoid unexpected Exception
+
+11. Polymorphism with toString() method
+- Iterate through the list and print out the information of the media by using toString() method. Observe
+what happens and explain in detail.
+Observation: The output differs depending on whether the object is a Book, DVD, or CD, no matter how at first, they were all defined in List of Media. 
+Explanation: Even though the list is declared as ArrayList<Media>, the actual objects inside are of type Book, DVD, and CD. When I call m.toString(), Java use polymorphism to decide which toString() to call.
+
+12. Sort media in the cart
+- What class should implement the Comparable interface?
+Media Class, because Media is the most common superclass of Disc, CompactDisc and DigitalVideoDisc. By making Media comparable, all subclasses automatically inherit the ability to be compared.
+
+- In those classes, how should you implement the compareTo()method be to reflect the ordering that we
+want?
+In Media, override compareTo() to define a requested ordering. For example with MediaComparatorByTitleCost, we sort by title first, then by cost (descending)
+
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+Comparable only allows one natural ordering per class (defined in compareTo()). If you need multiple sorting strategies, you must use Comparator objects instead.
+→ That’s why the lab suggests creating MediaComparatorByTitleCost and MediaComparatorByCostTitle.
+
+- Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing
+length, then cost. How would you modify your code to allow this?
+
+
+
