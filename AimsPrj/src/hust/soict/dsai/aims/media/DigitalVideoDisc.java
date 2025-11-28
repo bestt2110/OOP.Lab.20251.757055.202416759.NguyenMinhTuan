@@ -1,66 +1,43 @@
 package hust.soict.dsai.aims.media;
 
-public class DigitalVideoDisc extends Media {
+public class DigitalVideoDisc extends Disc implements Playable {
 	
 	public DigitalVideoDisc(String title) {
-		super();
-		this.title = title;
-		nbDigitalVideoDiscs++;
-		this.id = nbDigitalVideoDiscs;
+		super(title);
 	}
 	public DigitalVideoDisc(String title, String category, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.cost = cost;
-		nbDigitalVideoDiscs++;
-		this.id = nbDigitalVideoDiscs;
+		super(title, category, cost);
 	}
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.director = director;
-		this.cost = cost;
-		nbDigitalVideoDiscs++;
-		this.id = nbDigitalVideoDiscs;
+		super(title,category,director,cost);
 	}
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.director = director;
-		this.length = length;
-		this.cost = cost;
-		nbDigitalVideoDiscs++;
-		this.id = nbDigitalVideoDiscs;
+		super(title,category,director,length,cost);
 	}
-	private static int nbDigitalVideoDiscs=0;
+	
 	@Override
 	public String toString() {
 	    String result = "DVD";
 
-	    if (title != null) {
-	        result += " - [Title: " + title + "]";
+	    if (getTitle() != null) {
+	        result += " - [Title: " + getTitle() + "]";
 	    }
-	    if (category != null) {
-	        result += " - [Category: " + category + "]";
+	    if (getCategory() != null) {
+	        result += " - [Category: " + getCategory() + "]";
 	    }
-	    if (director != null) {
-	        result += " - [Director: " + director + "]";
+	    if (getDirector() != null) {
+	        result += " - [Director: " + getDirector() + "]";
 	    }
-	    if (length > 0) {
-	        result += " - [Length: " + length + "]";
+	    if (getLength() > 0) {
+	        result += " - [Length: " + getLength() + "]";
 	    }
-	    if (cost > 0) {
-	        result += " - [Price: " + cost + "$]";
+	    if (getCost() > 0) {
+	        result += " - [Price: " + getCost() + "$]";
 	    }
 	    return result;
 	}
-	public boolean isMatch(String title) {
-		return this.title.equalsIgnoreCase(title);
-	}
-	public boolean isMatch(int id) {
-		return id==this.id;
-	}
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
+		}
 }

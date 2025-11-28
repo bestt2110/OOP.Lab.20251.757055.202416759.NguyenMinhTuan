@@ -3,10 +3,10 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompactDisc extends Disc {
+public class CompactDisc extends Disc implements Playable {
 	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
-	private int qtyOrdered = 0;
+	private int numOfDisc = 0;
 	public CompactDisc() {
 		// TODO Auto-generated constructor stub
 	}
@@ -16,7 +16,7 @@ public class CompactDisc extends Disc {
 	public void addTrack(Track trackName) {
 		if (!tracks.contains(trackName) ) {
 			tracks.add(trackName);
-			qtyOrdered++;
+			numOfDisc++;
 			System.out.print("Track" + trackName + "added");
 		}
 		else {
@@ -26,7 +26,7 @@ public class CompactDisc extends Disc {
 	public void removeTrack(String trackName) {
 		if (tracks.contains(trackName) ) {
 			tracks.remove(trackName);
-			qtyOrdered--;
+			numOfDisc--;
 			System.out.print("Track" + trackName + "removed");
 		}
 		else {
@@ -35,15 +35,62 @@ public class CompactDisc extends Disc {
 	}
 	public int getLength() {
 		int total = 0;
-		for (int i = 0; i < qtyOrdered; i++) {
+		for (int i = 0; i < numOfDisc; i++) {
 			int length = tracks.get(i).getLength();
 			total += length;
 		}
 		return total;
 		}
-	public CompactDisc(String artist, ArrayList<Track> tracks) {
-		super();
+	
+	public CompactDisc(String title, String artist, ArrayList<Track> tracks) {
+		super(title);
 		this.artist = artist;
 		this.tracks = tracks;
+	}
+	public CompactDisc(String title, String category, String artist, ArrayList<Track> tracks, float cost) {
+		super(title, category, cost);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+	public CompactDisc(String title, String category, String director, String artist, ArrayList<Track> tracks, float cost) {
+		super(title,category,director,cost);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+	public CompactDisc(String title, String category, String director, String artist, ArrayList<Track> tracks, int length, float cost) {
+		super(title,category,director,length,cost);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+
+	public void play() {
+		for (Track track: tracks) {
+			System.out.println("Playing Track: " + this.getTitle());
+			System.out.println("Track length: " + this.getLength());
+		}	
+	}
+	@Override
+	public String toString() {
+	    String result = "CD";
+
+	    if (getTitle() != null) {
+	        result += " - [Title: " + getTitle() + "]";
+	    }
+	    if (getCategory() != null) {
+	        result += " - [Category: " + getCategory() + "]";
+	    }
+	    if (getDirector() != null) {
+	        result += " - [Director: " + getDirector() + "]";
+	    }
+	    if (tracks != null) {
+	    	result += " - [Tracklist: " + tracks + "]";
+	    }
+	    if (getLength() > 0) {
+	        result += " - [Length: " + getLength() + "]";
+	    }
+	    if (getCost() > 0) {
+	        result += " - [Price: " + getCost() + "$]";
+	    }
+	    return result;
 	}
 }
