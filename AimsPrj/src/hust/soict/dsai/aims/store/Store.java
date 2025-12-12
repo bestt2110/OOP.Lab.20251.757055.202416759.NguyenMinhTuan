@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import hust.soict.dsai.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Store {
-	private ArrayList<Media> itemsInStore = new ArrayList<Media>();
+	private ObservableList<Media> itemsInStore = FXCollections.observableArrayList();
 
     public void addMedia(Media stuff) {
             itemsInStore.add(stuff);
@@ -52,6 +54,8 @@ public class Store {
             System.out.println(m.getTitle());
         }
     }
-
+	public ObservableList<Media> getItemsInStore() {
+		return itemsInStore;
+	}
 }
 

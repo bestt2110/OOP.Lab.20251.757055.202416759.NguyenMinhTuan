@@ -56,11 +56,25 @@ public abstract class Media {
 		this.title = title;
 	}
 	@Override
-	public boolean equals(Object obj) {
-	    if (this == obj) return true;               
-	    if (!(obj instanceof Media)) return false;    
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
 
-	    Media other = (Media) obj;
-	    return this.getTitle().equals(other.getTitle());
-	}
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj instanceof Media) {
+            Media otherMedia = (Media) obj;
+            
+            if (this.getTitle() == null || otherMedia.getTitle() == null) {
+                return false;
+            }
+            
+            return this.getTitle().equals(otherMedia.getTitle());
+        }
+
+        return false;
+    }
 }

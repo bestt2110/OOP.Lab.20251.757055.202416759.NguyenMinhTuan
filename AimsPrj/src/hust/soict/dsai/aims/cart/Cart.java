@@ -1,52 +1,57 @@
 package hust.soict.dsai.aims.cart;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 
 public class Cart {
-	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
-	public String name(Media stuff) {
-		return stuff.getTitle();
-	}
-	
-	public void addMedia(Media ... mediaList) {
-	    if (itemsOrdered.size() + mediaList.length < MAX_NUMBERS_ORDERED) {
-	    	for (Media stuff: mediaList) {
-	    		itemsOrdered.add(stuff);  
-		        System.out.println("The disc " + name(stuff) + "has been added.");
-	    	}
-	    } else {
-	        System.out.println("The cart is almost full!");
-	    	}
-	}
-	
-	public void removeMedia(Media ... mediaList) {
-		for (Media stuff: mediaList) {
-		    for (int i = 0; i < itemsOrdered.size(); i++) {
-		        if (itemsOrdered.contains(stuff)) {
-		            for (int j = i; j < itemsOrdered.size() - 1; j++) {
-		                itemsOrdered.set(j, itemsOrdered.get(j + 1));
-		            }
-		            itemsOrdered.remove(itemsOrdered.size());
-			        System.out.println(name(stuff) + "has been removed.");
-		            return;
-		        }
-		    }
-		    System.out.println("Media not found in the cart.");
-	}
-	}
-	
-	public float totalCost() {
-		float total = 0;
-		for (int i = 0; i < itemsOrdered.size(); i++) {
-			float price = itemsOrdered.get(i).getCost();
-			total += price;
-		}
-		return total;
-	}
+    
+    private final int MAX_NUMBER_ORDERED = 20;
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+
+    public void addMedia(Media media) throws LimitExceededException {
+    	if (itemsOrdered.size() < MAX_NUMBER_ORDERED) {
+            itemsOrdered.add(media);
+            System.out.println("Added: " + media.getTitle());
+    	}
+    	else {
+    		throw new LimitExceededException("ERROR: Cart is full");
+    	}
+    }
+
+    public void removeMedia(Media media) {
+        // Xóa trực tiếp đối tượng, KHÔNG dùng index để tránh lỗi IndexOutOfBounds
+        if (itemsOrdered.contains(media)) {
+            itemsOrdered.remove(media);
+            System.out.println("Removed: " + media.getTitle());
+        } else {
+            System.out.println("Media not found in cart.");
+        }
+    }
+
+    // Trả về đúng danh sách ObservableList để Controller dùng
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
+
+    public float totalCost() {
+        float total = 0;
+        for (Media media : itemsOrdered) {
+            total += media.getCost();
+        }
+        return total;
+    }
+    
+    // Hàm làm sạch giỏ hàng (dùng cho nút Place Order)
+    public void clear1() {
+        itemsOrdered.clear();
+        System.out.println("Cart has been cleared.");
+    }
 	public void print() {
 		System.out.println("***********************CART***********************");
 		for (int i=0; i < itemsOrdered.size(); i++) {
@@ -110,4 +115,8 @@ public class Cart {
 	public void clear() {
         itemsOrdered.clear();
 	}
+
+	public void addListChangeListener(ListChangeListener<? super Media> listener) {
+        itemsOrdered.addListener(listener);
+    }
 }
